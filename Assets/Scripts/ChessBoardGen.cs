@@ -29,7 +29,7 @@ public class ChessBoardGen : MonoBehaviour
                 {
                     Gizmos.color = Color.black;
                 }
-                Gizmos.DrawCube(new Vector3(x, y, 0), new Vector3(1, 1, 1));
+                Gizmos.DrawWireCube(new Vector3(x, y, 0), new Vector3(1, 1, 1));
             }
             
         }
