@@ -19,7 +19,7 @@ public class ChessPieces : MonoBehaviour
     }
 }
 
-[CustomEditor(typeof(ChessPieces))]
+/*[CustomEditor(typeof(ChessPieces))]
 public class ExampleEditor : Editor
 {
     // Custom in-scene UI for when ExampleScript
@@ -38,4 +38,4 @@ public class ExampleEditor : Editor
         GUI.color = color;
         Handles.Label(pos, t.value.ToString(t.name));
     }
-}
+}*/

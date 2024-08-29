@@ -13,8 +13,12 @@ public class RookClass : ChessPiece
         SpriteRenderer = GetComponent<SpriteRenderer>();
         newSprite = Resources.Load<Sprite>("Rook");
         SpriteRenderer.sprite = newSprite;
-        horizontalMovement = 8;
-        verticalMovement = 8;
+        Vector3 firstPoint = new Vector3(transform.position.x, transform.position.y + 7, transform.position.z);
+        firstPoints.Add(firstPoint);
+        Vector3 leftPoint = new Vector3(transform.position.x - 7, transform.position.y, transform.position.z);
+        firstPoints.Add(leftPoint);
+        Vector3 rightPoint = new Vector3(transform.position.x + 7, transform.position.y, transform.position.z);
+        firstPoints.Add(rightPoint);
     }
 
     // Update is called once per frame

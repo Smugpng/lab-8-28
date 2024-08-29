@@ -14,6 +14,9 @@ public class PawnClass : ChessPiece
         SpriteRenderer.sprite = newSprite;
         horizontalMovement = 0;
         verticalMovement = 1;
+        Vector3 firstPoint = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
+        firstPoints.Add(firstPoint);
+        firstPoints.Add(new Vector3(firstPoint.x+.2f, firstPoint.y - 1, firstPoint.z));
     }
 
     // Update is called once per frame

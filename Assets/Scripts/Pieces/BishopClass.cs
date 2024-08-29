@@ -13,7 +13,9 @@ public class BishopClass : ChessPiece
         SpriteRenderer = GetComponent<SpriteRenderer>();
         newSprite = Resources.Load<Sprite>("Bishop");
         SpriteRenderer.sprite = newSprite;
-        horizontalMovement = 8;
-        verticalMovement = 8;
+        Vector3 diagLeft = new Vector3(transform.position.x - 5, transform.position.y + 5, transform.position.z);
+        firstPoints.Add(diagLeft);
+        Vector3 diagRight = new Vector3(transform.position.x + 5, transform.position.y + 5, transform.position.z);
+        firstPoints.Add(diagRight);
     }
 }

@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
+[ExecuteInEditMode]
 public class ChessPiece : MonoBehaviour
 {
     public enum PieceType
@@ -16,12 +19,16 @@ public class ChessPiece : MonoBehaviour
     };
     public PieceType type;  
     protected Sprite Sprite;
-
+    public float value =1;
     [SerializeField] protected int horizontalMovement;
     [SerializeField] protected int verticalMovement;
+    protected Vector3 startingPoint;
+    protected List<Vector3> firstPoints = new List<Vector3>();
+    protected List<Vector3> secondPoints = new List<Vector3>();
 
     public void SetState(PieceType newType)
     {
+        startingPoint = this.transform.position;
         type = newType;
         SetUp();
     }
@@ -55,9 +62,34 @@ public class ChessPiece : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Vector3 firstPoint = new Vector3(this.transform.position.x, this.transform.position.y + verticalMovement, this.transform.position.z);
-        Vector3 lastPoint = new Vector3(firstPoint.x + horizontalMovement, firstPoint.y, firstPoint.z);
-        Gizmos.DrawLine(this.transform.position, firstPoint);
-        Gizmos.DrawLine(firstPoint, lastPoint);
+        foreach(Vector3 point in firstPoints)
+        {
+            Gizmos.DrawLine(this.transform.position, point);
+            foreach (Vector3 secondPoint in secondPoints)
+            {
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawLine(point, secondPoint);
+            }
+        }
+        
+    }
+}
+[CustomEditor(typeof(ChessPiece))]
+public class ExampleEditor : Editor
+{
+    // Custom in-scene UI for when ExampleScript
+    // component is selected.
+    public void OnSceneGUI()
+    {
+        var t = target as ChessPiece;
+        var tr = t.transform;
+        var pos = tr.position;
+        // display an orange disc where the object is
+        var color = new Color(1, 0.8f, 0.4f, 1);
+        Handles.color = color;
+        Handles.DrawWireDisc(pos, tr.forward, .5f);
+        // display object "value" in scene
+        GUI.color = color;
+        Handles.Label(pos, t.value.ToString("F1"));
     }
 }
