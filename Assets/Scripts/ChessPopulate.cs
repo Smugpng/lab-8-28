@@ -7,22 +7,23 @@ using static UnityEngine.GraphicsBuffer;
 public class ChessPopulate : MonoBehaviour
 {
     public float value = 7.0f;
-    private void OnDrawGizmos()
+    [SerializeField] private GameObject chessPiece;
+    private void Start()
     {
 
         for (int x = 0; x < 8; x++) 
         {
-            if (x == 0 || x == 7) { Gizmos.DrawIcon(new Vector3(x, 0, 0), "Rook.png", true); }
-            if (x == 1 || x == 6) { Gizmos.DrawIcon(new Vector3(x, 0, 0), "Knight.png", true); }
-            if (x == 2 || x == 5) { Gizmos.DrawIcon(new Vector3(x, 0, 0), "Bishop.png", true); }
-            if (x == 3) { Gizmos.DrawIcon(new Vector3(x, 0, 0), "Queen.png", true); }
-            if (x == 4) { Gizmos.DrawIcon(new Vector3(x, 0, 0), "King.png", true); }
+            if (x == 0 || x == 7) { GameObject rook =  Instantiate(chessPiece, new Vector3(x, 0, 0), Quaternion.identity); rook.AddComponent<RookClass>(); rook.name = "rook"; }
+            if (x == 1 || x == 6) { GameObject knight = Instantiate(chessPiece, new Vector3(x, 0, 0), Quaternion.identity); knight.AddComponent<Knightclass>(); knight.name = "knight"; }
+            if (x == 2 || x == 5) { GameObject bishop = Instantiate(chessPiece, new Vector3(x, 0, 0), Quaternion.identity); bishop.AddComponent<BishopClass>(); bishop.name = "bishop"; }
+            if (x == 3) { GameObject queen = Instantiate(chessPiece, new Vector3(x, 0, 0), Quaternion.identity); queen.AddComponent<QueenClass>(); queen.name = "queen"; }
+            if (x == 4) { GameObject king = Instantiate(chessPiece, new Vector3(x, 0, 0), Quaternion.identity); king.AddComponent<KingClass>(); king.name = "king"; }
             for (int y = 0; y < 2; y++)
             {
                 
                 if (y == 1)
                 {
-                    Gizmos.DrawIcon(new Vector3(x, y, 0), "Pawn.png", true);
+                    { GameObject pawn = Instantiate(chessPiece, new Vector3(x, y, 0), Quaternion.identity); pawn.AddComponent<PawnClass>(); pawn.name = "pawn"; }
                 }
                
             }
@@ -32,7 +33,7 @@ public class ChessPopulate : MonoBehaviour
     }
 
 }
-[CustomEditor(typeof(ChessPopulate))]
+/*[CustomEditor(typeof(ChessPopulate))]
 public class ExampleEditor : Editor
 {
     // Custom in-scene UI for when ExampleScript
@@ -50,4 +51,4 @@ public class ExampleEditor : Editor
         GUI.color = color;
         Handles.Label(pos, t.value.ToString("F1"));
     }
-}
+}*/
