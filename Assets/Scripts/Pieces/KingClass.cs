@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(ChessPiece))]
 public class KingClass : ChessPiece
 {
     public Sprite newSprite;
@@ -9,13 +8,10 @@ public class KingClass : ChessPiece
     // Start is called before the first frame update
     void Awake()
     {
-        SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        SpriteRenderer = GetComponent<SpriteRenderer>();
+        newSprite = Resources.Load<Sprite>("King");
         SpriteRenderer.sprite = newSprite;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        horizontalMovement = 1;
+        verticalMovement = 1;
     }
 }
