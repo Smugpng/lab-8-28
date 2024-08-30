@@ -4,7 +4,6 @@ using UnityEngine;
 public class Knightclass : ChessPiece
 {
     public Sprite newSprite;
-    private SpriteRenderer SpriteRenderer;
 
     // Start is called before the first frame update
     void Awake()

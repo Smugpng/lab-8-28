@@ -5,7 +5,6 @@ using UnityEngine;
 public class BishopClass : ChessPiece
 {
     public Sprite newSprite;
-    private SpriteRenderer SpriteRenderer;
 
     // Start is called before the first frame update
     void Awake()

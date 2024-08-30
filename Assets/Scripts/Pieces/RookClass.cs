@@ -5,7 +5,6 @@ using UnityEngine;
 public class RookClass : ChessPiece
 {
     public Sprite newSprite;
-    private SpriteRenderer SpriteRenderer;
 
     // Start is called before the first frame update
     void Awake()

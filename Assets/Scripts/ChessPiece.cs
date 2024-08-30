@@ -19,12 +19,24 @@ public class ChessPiece : MonoBehaviour
     };
     public PieceType type;  
     protected Sprite Sprite;
-    public float value =1;
+    public float value = 1;
     [SerializeField] protected int horizontalMovement;
     [SerializeField] protected int verticalMovement;
     protected Vector3 startingPoint;
     protected List<Vector3> firstPoints = new List<Vector3>();
     protected List<Vector3> secondPoints = new List<Vector3>();
+
+
+
+    protected SpriteRenderer SpriteRenderer;
+    public Color origin;
+    void Start()
+    {
+        SpriteRenderer = GetComponent<SpriteRenderer>();
+        origin = SpriteRenderer.color;
+    }
+
+
 
     public void SetState(PieceType newType)
     {
@@ -61,6 +73,7 @@ public class ChessPiece : MonoBehaviour
    
     private void OnDrawGizmosSelected()
     {
+        SpriteRenderer.color = Color.green;
         Gizmos.color = Color.red;
         foreach(Vector3 point in firstPoints)
         {
@@ -71,8 +84,13 @@ public class ChessPiece : MonoBehaviour
                 Gizmos.DrawLine(point, secondPoint);
             }
         }
-        
     }
+
+    private void OnDrawGizmos()
+    {
+        SpriteRenderer.color = origin;
+    }
+
 }
 [CustomEditor(typeof(ChessPiece))]
 public class ExampleEditor : Editor
